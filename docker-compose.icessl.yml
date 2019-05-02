@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+
+  # A helper container to generate self-signed SSL certificates
+  icessl:
+    build: ./icessl
+    volumes:
+      - "./certs:/icessl:rw${VOLOPTS-}"

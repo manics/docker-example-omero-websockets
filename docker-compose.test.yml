@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  test:
+    build: ./test
+    command:
+      - -c
+      - pytest -p no:cacheprovider /test/tests.py
+    environment:
+      PYTHONPATH: /opt/omero/server/OMERO.server/lib/python/
+    networks:
+      - omero
+    volumes:
+      - "./test:/test:ro${VOLOPTS-}"

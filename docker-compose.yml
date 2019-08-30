@@ -30,7 +30,7 @@ services:
       # needed since the clients are configured to use ADH.
       CONFIG_omero_glacier2_IceSSL_Ciphers: ADH:HIGH
       CONFIG_omero_glacier2_IceSSL_DefaultDir: /etc/ssl/selfsigned
-      CONFIG_omero_glacier2_IceSSL_CAs: cacert.pem
+      CONFIG_omero_glacier2_IceSSL_CAs: server.pem
       CONFIG_omero_glacier2_IceSSL_CertFile: server.p12
       CONFIG_omero_glacier2_IceSSL_Password: secret
 

@@ -1,0 +1,21 @@
+#!/bin/sh
+PASSWORD=secret
+CN=localhost
+OWNER=/C=UK/ST=Scotland/L=Dundee/O=OME
+DAYS=365
+
+set -eu
+
+if [ -f server.p12 -a -f server.pem -a -f server.key ]; then
+    echo "Certificates already exist, not overwriting"
+    exit 2
+fi
+
+openssl req -new -nodes -x509 -subj "$OWNER/CN=$CN" -days $DAYS -keyout server.key -out server.pem -extensions v3_ca
+echo Created server.key server.pem
+
+openssl pkcs12 -keypbe PBE-SHA1-3DES -certpbe PBE-SHA1-3DES -export -out server.p12 -inkey server.key -in server.pem -name server -password pass:"$PASSWORD"
+echo Created server.p12 
+
+# To view pkcs12 file:
+# openssl pkcs12 -info -nodes -in server.p12 -password pass:"$PASSWORD"

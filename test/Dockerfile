@@ -6,7 +6,7 @@ RUN cd /opt/omero/server/ && \
 
 USER root
 
-RUN pip install pytest
+RUN pip install 'pytest>4,<5'
 
 USER omero-server
 
